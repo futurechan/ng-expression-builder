@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<base href="/">
+		
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="css/expression-builder.css">
+		
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="js/expression-builder.js"></script>
+
+		<script>
+			angular.module('app', ['expression-builder'])
+				.controller("AppController", function($scope){
+					//$scope.booleanOperators=['AND', 'OR', 'AND NOT'];
+					
+					$scope.conditions=[
+						{
+							"conditions":[
+								{
+									"field":"a.a"
+								},
+								{
+									"conditions":[
+										{
+											"field":"a.b.a"
+										},
+										{
+											"field":"a.b.b"
+										}
+									]
+								}
+							]
+						},
+						{
+							"field":"b"
+						}
+					]
+				})
+			
+		
+		</script>
+		
+		
+	</head>
+	<body ng-app="app">
+		<div ng-controller="AppController">
+		
+			<expression-builder 
+				conditions="conditions" boolean-operators="booleanOperators"></expression-builder>
+		</div>
+		
+	</body>
+</html>

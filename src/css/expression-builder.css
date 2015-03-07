@@ -1,0 +1,18 @@
+.bool-op {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.condition-builder { 
+	margin:10px; 
+}
+
+.condition-group {
+	border: 1px solid #ccc; 
+	border-radius:5px; 	
+	padding:10px
+}
+
+.condition-group-button-row {
+	margin-top:10px
+}
