@@ -1,4 +1,4 @@
-angular.module('expression-builder', [])
+angular.module('expression-builder', ['ui.bootstrap'])
 
 	.controller('ExpressionBuilderController', function($scope){
 		
@@ -19,6 +19,18 @@ angular.module('expression-builder', [])
 		$scope.removeAt=function(idx){
 			$scope.conditions.splice(idx,1);
 		}
+		
+		$scope.getLeftOperands=function($viewValue){
+			return ($scope.leftOperandProvider)
+				? $scope.leftOperandProvider($viewValue)
+				: [];				
+		}
+		
+		$scope.getRightOperands=function($viewValue){
+			return ($scope.rightOperandProvider)
+				? $scope.rightOperandProvider($viewValue)
+				: [];		
+		}
 	})
 	
 	.directive('expressionBuilder', function($compile){
@@ -30,7 +42,9 @@ angular.module('expression-builder', [])
 			scope: {
 				conditions: '=',
 				booleanOperators: '=?',
-				comparisonOperators: '=?'
+				comparisonOperators: '=?',
+				leftOperandProvider: '&',
+				rightOperandProvider: '&'
 			},
 			compile: function (element) {
 				var contents = element.contents().remove();
@@ -46,11 +60,18 @@ angular.module('expression-builder', [])
 					});
 					
 					if(scope.booleanOperators === undefined)
-						scope.booleanOperators = ['AND', 'OR', 'AND NOT', 'XOR'];
+						scope.booleanOperators = ['AND', 'OR', 'XOR'];
 					
 					if(scope.comparisonOperators === undefined)
 						scope.comparisonOperators = ['=', '<>', '<', '<=', '>', '>='];
+					
+					if(scope.leftOperandProvider)
+						scope.leftOperandProvider = scope.leftOperandProvider()
+					
+					if(scope.rightOperandProvider)
+						scope.rightOperandProvider = scope.rightOperandProvider()
 				};
 			}
 		};
 	})
+	

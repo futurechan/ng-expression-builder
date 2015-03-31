@@ -1,14 +1,14 @@
 {
   "name": "ng-expression-builder",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "authors": [
     "Josh <joshua.bennett.chan@gmail.com>"
   ],
   "keywords": [
-        "angular",
-        "angular-query-builder",
-        "bootstrap"
-    ],
+    "angular",
+    "angular-query-builder",
+    "bootstrap"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "angular": "~1.3.14",
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+	"angular-bootstrap": "~0.12.1"
   }
 }

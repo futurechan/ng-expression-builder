@@ -6,12 +6,26 @@
 		<link rel="stylesheet" href="css/expression-builder.css">
 		
 		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 		<script src="js/expression-builder.js"></script>
 
 		<script>
 			angular.module('app', ['expression-builder'])
 				.controller("AppController", function($scope){
 					//$scope.booleanOperators=['AND', 'OR', 'AND NOT'];
+					
+					var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+					
+					$scope.getRightOperands=function($viewValue){
+						var results = [];
+						
+						states.forEach(function(state){
+							if(state.toLowerCase().indexOf($viewValue.toLowerCase()) > -1)
+								results.push(state);
+						})
+						
+						return results;
+					}
 					
 					$scope.conditions=[
 						{
@@ -46,7 +60,11 @@
 		<div ng-controller="AppController">
 		
 			<expression-builder 
-				conditions="conditions" boolean-operators="booleanOperators"></expression-builder>
+				conditions="conditions" boolean-operators="booleanOperators"
+					right-operand-provider="getRightOperands"></expression-builder>
+					
+			<expression-stringer
+				conditions="conditions"></conditions>
 		</div>
 		
 	</body>

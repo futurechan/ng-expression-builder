@@ -11,18 +11,21 @@
 			<div class="pull-right">
 				<button class="btn btn-danger btn-sm" ng-click="removeAt($index)">&times;</button>
 			</div>
-			<expression-builder conditions="c.conditions" boolean-operators="booleanOperators" comparison-operators="comparisonOperators"></expression-builder>
+			<expression-builder conditions="c.conditions" boolean-operators="booleanOperators" comparison-operators="comparisonOperators"
+				left-operand-provider="leftOperandProvider" right-operand-provider="rightOperandProvider"></expression-builder>
 		</div>
 		
 		<div ng-if="!c.conditions" class="form-inline">
-			<div class="form-group-sm">
+			<div class="form-group-sm">								
 				<input class="form-control" 
-						ng-model="c.field" placeholder="Field"> 
+						ng-model="c.leftOperand" placeholder="Left Operand"
+						typeahead="operand for operand in getLeftOperands($viewValue)"> 
 				<select class="form-control" 
 						ng-model="c.comparison"
 						ng-options="o as o for o in comparisonOperators"></select> 
 				<input class="form-control" 
-						ng-model="c.value" placeholder="value">
+						ng-model="c.rightOperand" placeholder="Right Operand"
+						typeahead="operand for operand in getRightOperands($viewValue)">
 				<button class="btn btn-danger btn-sm" ng-click="removeAt($index)">&times;</button>
 			</div>
 		</div>				
