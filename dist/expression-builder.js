@@ -63,7 +63,7 @@ angular.module('expression-builder', ['ui.bootstrap'])
 						scope.booleanOperators = ['AND', 'OR', 'XOR'];
 					
 					if(scope.comparisonOperators === undefined)
-						scope.comparisonOperators = ['=', '<>', '<', '<=', '>', '>='];
+						scope.comparisonOperators = ['=', '<>', '<', '<=', '>', '>=', '[]'];
 					
 					if(scope.leftOperandProvider)
 						scope.leftOperandProvider = scope.leftOperandProvider()
