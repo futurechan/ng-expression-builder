@@ -21,12 +21,18 @@ angular.module('expression-builder', ['ui.bootstrap'])
 		}
 		
 		$scope.getLeftOperands=function($viewValue){
+			if($scope.staticLeftOperandProvider)
+				return $scope.staticLeftOperandProvider();
+			
 			return ($scope.leftOperandProvider)
 				? $scope.leftOperandProvider($viewValue)
 				: [];				
 		}
 		
 		$scope.getRightOperands=function($viewValue){
+			if($scope.staticRightOperandProvider)
+				return $scope.staticRightOperandProvider();
+			
 			return ($scope.rightOperandProvider)
 				? $scope.rightOperandProvider($viewValue)
 				: [];		
@@ -44,7 +50,9 @@ angular.module('expression-builder', ['ui.bootstrap'])
 				booleanOperators: '=?',
 				comparisonOperators: '=?',
 				leftOperandProvider: '&',
-				rightOperandProvider: '&'
+				staticLeftOperandProvider: '&',
+				rightOperandProvider: '&',
+				staticRightOperandProvider: '&'
 			},
 			compile: function (element) {
 				var contents = element.contents().remove();
@@ -68,8 +76,15 @@ angular.module('expression-builder', ['ui.bootstrap'])
 					if(scope.leftOperandProvider)
 						scope.leftOperandProvider = scope.leftOperandProvider()
 					
+					if(scope.staticLeftOperandProvider)
+						scope.staticLeftOperandProvider = scope.staticLeftOperandProvider()
+					
 					if(scope.rightOperandProvider)
 						scope.rightOperandProvider = scope.rightOperandProvider()
+					
+					if(scope.staticRightOperandProvider)
+						scope.staticRightOperandProvider = scope.staticRightOperandProvider()
+					
 				};
 			}
 		};
