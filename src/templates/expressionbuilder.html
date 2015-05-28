@@ -7,7 +7,7 @@
 				ng-options="o as o for o in booleanOperators" ng-model="c.bool" ></select>
 		</div>
 		
-		<div ng-if="c.conditions" class="condition-group">			
+		<div ng-if="c.conditions  != undefined" class="condition-group">			
 			<div class="pull-right">
 				<button class="btn btn-danger btn-sm" ng-click="removeAt($index)">&times;</button>
 			</div>
@@ -20,7 +20,7 @@
 			</expression-builder>
 		</div>
 		
-		<div ng-if="!c.conditions" class="form-inline">
+		<div ng-if="c.conditions == undefined" class="form-inline">
 			<div class="form-group-sm">								
 			
 				<select class="form-control" ng-if="leftOperands"
